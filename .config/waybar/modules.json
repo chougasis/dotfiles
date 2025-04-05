@@ -1,0 +1,123 @@
+
+//   _ _ _ _____ __ __ _____ _____ _____
+//  | | | |  _  |  |  | __  |  _  | __  |
+//  | | | |     |_   _| __ -|     |    -|
+//  |_____|__|__| |_| |_____|__|__|__|__|  MODULES
+//
+//  by Bina
+
+
+{
+	// workspaces
+	"hyprland/workspaces" : {
+		"on-click": "activate",
+		"active-only": false,
+		"all-outputs": true,
+		"format": "{name}",
+		"format-icons": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+		},
+		"persistent-workspaces": {
+			"*": 5
+		},
+	},
+
+	// window
+	"hyprland/window" : {
+		"window_format": "{app_id}"
+	},	
+	
+	// clock
+	"clock": {  
+		"interval": 1,
+		"format": "{:%I:%M %p}",
+		"format-alt": "{:%A, %B %d - %H:%M}",
+		"tooltip-format": "<big>{calendar}</big>",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#ffffff'><b>{}</b></span>",
+				"days": "<span color='#ffffff'><b>{}</b></span>",
+				"weeks": "<span color='#ffffff'><b>W{}</b></span>",
+				"weekdays": "<span color='#ffffff'><b>{}</b></span>",
+				"today": "<span color='#ffffff'><b><u>{}</u></b></span>"
+			}
+		}
+	},
+
+
+	// CPU
+	"cpu": {
+		"format": " 󰍛 {usage}% ",
+		"on-click": "kitty btop"
+	},
+	
+	// temperature
+	"temperature": {
+		"format": " 󰈸 {temperatureF}°F ",
+		"on-click": "kitty btop"
+	},
+	
+	// memory
+	"memory": {
+		"format": "  {}% ",
+		"on-click": "kitty btop"
+	},
+	
+	// audio
+	"pulseaudio": {
+		"scroll-step": 1,
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": "󰖁 {icon} {format_source}",
+		"format-muted": "󰖁 {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",	
+			"default": ["", "", ""]
+		},
+		"on-click": "pavucontrol"
+	},
+	
+	// bluetooth
+	"bluetooth": {
+		"format": " {status}",
+		"format-disabled": " {status}",
+		"format-off": " {status}",
+		"interval": 30,
+		"on-click": "blueman-manager",
+		"format-no-controller": ""
+	},
+	
+	// network
+	"network": {
+		"format": "{ifname}",
+		"format-wifi": " {signalStrength}%",
+		"format-ethernet": "󰌘 {ifname}",
+		"format-disconnected": "disconnected",
+		"tooltip-format": "󰌘 {ifname} via {gwaddri}",
+		"tooltip-format-wifi": " {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+		"tooltip-format-ethernet": "󰌘 {ifname}\nIP: {ipaddr}\n  {bandwidthUpBits}  {bandwidthDownBits}",
+		"tooltip-format-disconnected": "disconnected",
+		"max-length": 50,
+		"on-click": "nm-connection-editor"
+		//"on-click": "~/dotfiles/.settings/networkmanager.sh"
+	},
+	
+	
+	// power menu
+	"custom/exit": {
+		"format": "",
+		"on-click": "wlogout -b 2",
+		"tooltip": false		
+	},
+}
+
+
+
