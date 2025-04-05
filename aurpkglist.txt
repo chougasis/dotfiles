@@ -1,0 +1,10 @@
+arch-update
+hyprshot
+librewolf-bin
+paru
+paru-debug
+python-imageio
+python-imageio-ffmpeg
+python-pywal16
+python-screeninfo
+waypaper
