@@ -8,9 +8,8 @@ fi
 
 # Step 1: Apply dotfiles from the cloned repo
 echo "Applying dotfiles..."
-alias dot='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-dot checkout
-dot config --local status.showUntrackedFiles no
+git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
+git --git-dir=$HOME/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
 
 # Step 2: Update username references in config files
 echo "Updating config files with the new username..."
@@ -25,5 +24,6 @@ systemctl enable NetworkManager.service
 systemctl enable sddm.service
 
 echo "Setup complete! Reboot recommended."
+
 
 
