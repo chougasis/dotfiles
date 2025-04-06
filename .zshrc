@@ -35,5 +35,4 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-alias dot='/usr/bin/git --git-dir=/home/chougasis/dotfiles.git --work-tree=/home/chougasis'
-alias dot='/usr/bin/git --git-dir=/home/chougasis/dotfiles.git --work-tree=/home/chougasis'
+
