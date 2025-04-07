@@ -10,9 +10,6 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S xdg-user-dirs --noconfirm
 xdg-user-dirs-update
 
-# Install git
-sudo pacman -S git --noconfirm
-
 # Install paru
 sudo pacman -S --needed base-devel --noconfirm
 git clone https://aur.archlinux.org/paru.git
