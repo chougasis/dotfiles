@@ -21,11 +21,11 @@ makepkg -si --noconfirm
 cd ..
 
 # Install from pkglist.txt
-[ -f pkglist.txt ] || { echo "pkglist.txt missing"; exit 1; }
+[ -f ~/$USER/dotfiles/pkglist.txt ] || { echo "pkglist.txt missing"; exit 1; }
 sudo pacman -S --needed - < pkglist.txt --noconfirm
 
 # Install from aurpkglist.txt
-[ -f aurpkglist.txt ] || { echo "aurpkglist.txt missing"; exit 1; }
+[ -f ~/$USER/dotfiles/aurpkglist.txt ] || { echo "aurpkglist.txt missing"; exit 1; }
 paru -S --needed - < aurpkglist.txt --noconfirm
 
 # Enable SDDM and set Hyprland as default
