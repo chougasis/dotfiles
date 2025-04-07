@@ -10,12 +10,14 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S xdg-user-dirs --noconfirm
 xdg-user-dirs-update
 
-# Install paru
-sudo pacman -S --needed base-devel --noconfirm
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si --noconfirm
-cd ..
+# Install paru if not already installed
+if ! command -v paru >/dev/null 2>&1; then
+    sudo pacman -S --needed base-devel --noconfirm
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si --noconfirm
+    cd ..
+fi
 
 # Install from pkglist.txt
 [ -f ~/dotfiles/pkglist.txt ] || { echo "pkglist.txt missing"; exit 1; }
