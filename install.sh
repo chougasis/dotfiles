@@ -37,8 +37,21 @@ echo -e "[General]\nSession=hyprland.desktop" | sudo tee -a /etc/sddm.conf.d/hyp
 cp -r ~/dotfiles/.config/* ~/.config/
 cp ~/dotfiles/.zshrc ~/.zshrc
 
-# Source .zshrc
-source .zshrc
+# Source .zshrc with checks
+if [ -f ~/.zshrc ]; then
+    echo "Sourcing ~/.zshrc..."
+    if command -v zsh >/dev/null 2>&1; then
+        zsh -c "source ~/.zshrc && echo 'Successfully sourced ~/.zshrc in Zsh'" || {
+            echo "Error: Failed to source ~/.zshrc in Zsh"
+            exit 1
+        }
+    else
+        echo "Warning: Zsh not installed, cannot source ~/.zshrc properly"
+    fi
+else
+    echo "Error: ~/.zshrc not found after copy"
+    exit 1
+fi
 
 # Final message
 echo "Installation complete! Please reboot your system to apply all changes."
