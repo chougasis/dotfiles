@@ -1,29 +1,47 @@
 #!/bin/bash
 
-# Ensure the script is run as a normal user, not root
-if [[ $EUID -eq 0 ]]; then
-    echo "Please do not run as root. Run this script as a normal user."
-    exit 1
-fi
+# Exit on error
+set -e
 
-# Step 1: Apply dotfiles from the cloned repo
-echo "Applying dotfiles..."
-git --git-dir=$HOME/dotfiles --work-tree=$HOME checkout
-git --git-dir=$HOME/dotfiles --work-tree=$HOME config --local status.showUntrackedFiles no
+# Update system
+sudo pacman -Syu --noconfirm
 
-# Step 2: Update username references in config files
-echo "Updating config files with the new username..."
-find $HOME/.config/ -type f -exec sed -i "s#/home/chougasis#$HOME#g" {} \;
-sed -i "s#/home/chougasis#$HOME#g" $HOME/.zshrc
-sed -i "s#/home/chougasis#$HOME#g" $HOME/.profile
+# Install xdg-user-dirs and create default user directories
+sudo pacman -S xdg-user-dirs --noconfirm
+xdg-user-dirs-update
 
-# Step 3: Enable necessary services
-echo "Enabling necessary services..."
-systemctl --user enable pipewire.service
-systemctl enable NetworkManager.service
-systemctl enable sddm.service
+# Install git
+sudo pacman -S git --noconfirm
 
-echo "Setup complete! Reboot recommended."
+# Install paru
+sudo pacman -S --needed base-devel --noconfirm
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si --noconfirm
+cd ..
 
+# Install from pkglist.txt
+[ -f pkglist.txt ] || { echo "pkglist.txt missing"; exit 1; }
+sudo pacman -S --needed - < pkglist.txt --noconfirm
+
+# Install from aurpkglist.txt
+[ -f aurpkglist.txt ] || { echo "aurpkglist.txt missing"; exit 1; }
+paru -S --needed - < aurpkglist.txt --noconfirm
+
+# Enable SDDM and set Hyprland as default
+sudo systemctl enable sddm
+sudo mkdir -p /etc/sddm.conf.d
+echo -e "[Autologin]\nUser=\nSession=hyprland.desktop" | sudo tee /etc/sddm.conf.d/hyprland.conf
+echo -e "[General]\nSession=hyprland.desktop" | sudo tee -a /etc/sddm.conf.d/hyprland.conf
+
+# Copy dotfiles
+cp -r ~/dotfiles/.config/* ~/.config/
+cp ~/dotfiles/.zshrc ~/.zshrc
+
+# Source .zshrc
+source ~/.zshrc
+
+# Final message
+echo "Installation complete! Please reboot your system to apply all changes."
 
 
