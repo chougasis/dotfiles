@@ -10,6 +10,9 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S xdg-user-dirs --noconfirm
 xdg-user-dirs-update
 
+# Install 7zip and Neovim
+sudo pacman -S 7zip neovim --noconfirm
+
 # Install paru if not already installed
 if ! command -v paru >/dev/null 2>&1; then
     sudo pacman -S --needed base-devel --noconfirm
