@@ -38,7 +38,7 @@ cp -r ~/dotfiles/.config/* ~/.config/
 cp ~/dotfiles/.zshrc ~/.zshrc
 
 # Source .zshrc
-source ~/.zshrc
+source .zshrc
 
 # Final message
 echo "Installation complete! Please reboot your system to apply all changes."
