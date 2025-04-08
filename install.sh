@@ -6,6 +6,14 @@ set -e
 # Update system
 sudo pacman -Syu --noconfirm
 
+# Install zsh and switch shell
+sudo pacman -S zsh --noconfirm
+echo "Switching default shell to Zsh..."
+chsh -s /bin/zsh "$USER" || {
+    echo "Error: Failed to switch shell to Zsh!"
+    exit 1
+}
+
 # Install xdg-user-dirs and create default user directories
 sudo pacman -S xdg-user-dirs --noconfirm
 xdg-user-dirs-update
