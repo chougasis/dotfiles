@@ -56,6 +56,63 @@ else
     exit 1
 fi
 
+# Set wallpaper and run pywal
+SOURCE_WALLPAPER=~/dotfiles/bulma.jpg
+WALLPAPER=~/Pictures/Wallpapers/bulma.jpg
+
+# Check if source wallpaper exists
+if [ ! -f "$SOURCE_WALLPAPER" ]; then
+    echo "Error: $SOURCE_WALLPAPER not found!"
+    exit 1
+fi
+
+# Create Wallpapers directory and copy wallpaper
+mkdir -p ~/Pictures/Wallpapers || {
+    echo "Error: Failed to create ~/Pictures/Wallpapers!"
+    exit 1
+}
+echo "Copying $SOURCE_WALLPAPER to $WALLPAPER..."
+cp "$SOURCE_WALLPAPER" "$WALLPAPER" || {
+    echo "Error: Failed to copy $SOURCE_WALLPAPER to $WALLPAPER!"
+    exit 1
+}
+
+# Check if swww is installed
+if ! command -v swww >/dev/null 2>&1; then
+    echo "Error: swww not installed! Please install it to set the wallpaper."
+    exit 1
+fi
+
+# Check if wal is installed
+if ! command -v wal >/dev/null 2>&1; then
+    echo "Error: wal (pywal) not installed! Please install it to generate colors."
+    exit 1
+fi
+
+# Initialize swww daemon if not running
+if ! pgrep -f "swww-daemon" >/dev/null; then
+    echo "Starting swww daemon..."
+    swww init || {
+        echo "Error: Failed to start swww daemon!"
+        exit 1
+    }
+fi
+
+# Set the wallpaper with swww
+echo "Setting wallpaper to $WALLPAPER..."
+swww img "$WALLPAPER" --transition-type wipe --transition-fps 60 || {
+    echo "Error: Failed to set wallpaper with swww!"
+    exit 1
+}
+
+# Run pywal to generate color scheme based on the wallpaper
+echo "Running pywal to generate color scheme..."
+wal -i "$WALLPAPER" || {
+    echo "Error: Failed to run pywal!"
+    exit 1
+}
+echo "Wallpaper set and color scheme generated successfully!"
+
 # Final message
 echo "Installation complete! Please reboot your system to apply all changes."
 
