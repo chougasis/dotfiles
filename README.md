@@ -9,7 +9,9 @@ My friend wants to try Arch Linux, but instead of starting from scratch he just 
 ## Installation
 After installing Arch Linux do the following:
 
+'''
 Clone this Repo:
 git clone https://github.com/chougasis/dotfiles
 cd dotfiles
 sh install.sh
+'''
