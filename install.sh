@@ -64,6 +64,9 @@ else
     exit 1
 fi
 
+# Start Hyprland
+exec hyprland
+
 # Set wallpaper and run pywal
 SOURCE_WALLPAPER=~/dotfiles/bulma.jpg
 WALLPAPER=~/Pictures/Wallpapers/bulma.jpg
@@ -74,11 +77,18 @@ if [ ! -f "$SOURCE_WALLPAPER" ]; then
     exit 1
 fi
 
+# Create Screenshots directory
+mkdir -p ~/Pictures/Screenshots || {
+    echo "Error: Failed to create ~/Pictures/Screenshots!"
+    exit 1
+}
+
 # Create Wallpapers directory and copy wallpaper
 mkdir -p ~/Pictures/Wallpapers || {
     echo "Error: Failed to create ~/Pictures/Wallpapers!"
     exit 1
 }
+
 echo "Copying $SOURCE_WALLPAPER to $WALLPAPER..."
 cp "$SOURCE_WALLPAPER" "$WALLPAPER" || {
     echo "Error: Failed to copy $SOURCE_WALLPAPER to $WALLPAPER!"
