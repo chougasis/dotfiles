@@ -26,13 +26,13 @@ window {
 #outer-box {
   margin: 10px 10px 20px 10px;
   background-color: @background;
-  opacity: 1.0;
+  opacity: .95;
 }
 
 #inner-box {
   margin: 10px;
   background-color: @background;
-  opacity: 1.0;
+  opacity: .95;
 }
 
 #entry {

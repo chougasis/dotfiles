@@ -15,6 +15,7 @@ compinit
 ###Personal Config###
 #Start Up
 
+
 #Looks
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -24,6 +25,9 @@ export PS1='%n@%m:%~/$ '
 #Defaults
 export EDITOR=nvim
 export VISUAL=nvim
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+
 
 #Yazi Config
 function y() {
@@ -35,4 +39,5 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-
+alias dot='/usr/bin/git --git-dir=/home/chougasis/dotfiles/ --work-tree=/home/chougasis'
+alias dot='/usr/bin/git --git-dir=/home/chougasis/dotfiles/ --work-tree=/home/chougasis'
