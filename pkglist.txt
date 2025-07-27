@@ -2,7 +2,7 @@ blueman
 bluez
 bluez-utils
 btop
-deluge
+deluge-gtk
 discord
 dunst
 ethtool
