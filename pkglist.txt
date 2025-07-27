@@ -22,6 +22,7 @@ kio-admin
 kitty
 mpv
 nerd-fonts
+openssh
 pavucontrol
 poppler
 ripgrep
