@@ -6,11 +6,11 @@ set -e
 # Update system
 sudo pacman -Syu --noconfirm
 
-# Install zsh and switch shell
-sudo pacman -S zsh --noconfirm
-echo "Switching default shell to Zsh..."
-chsh -s /bin/zsh "$USER" || {
-    echo "Error: Failed to switch shell to Zsh!"
+# Install fish and switch shell
+sudo pacman -S fish --noconfirm
+echo "Switching default shell to fish..."
+chsh -s /bin/fish "$USER" || {
+    echo "Error: Failed to switch shell to fish!"
     exit 1
 }
 
@@ -46,21 +46,20 @@ echo -e "[General]\nSession=hyprland.desktop" | sudo tee -a /etc/sddm.conf.d/hyp
 
 # Copy dotfiles
 cp -r ~/dotfiles/.config/* ~/.config/
-cp ~/dotfiles/.zshrc ~/.zshrc
 
-# Source .zshrc with checks
-if [ -f ~/.zshrc ]; then
-    echo "Sourcing ~/.zshrc..."
-    if command -v zsh >/dev/null 2>&1; then
-        zsh -c "source ~/.zshrc && echo 'Successfully sourced ~/.zshrc in Zsh'" || {
-            echo "Error: Failed to source ~/.zshrc in Zsh"
+# Source config.fish with checks
+if [ -f ~/.config/fish/config.fish ]; then
+    echo "Sourcing ~/.config/fish/config.fish..."
+    if command -v fish >/dev/null 2>&1; then
+        fish -c "source ~/.config/fish/config.fish && echo 'Successfully sourced ~/.config/fish/config.fish in fish'" || {
+            echo "Error: Failed to source ~/.config/fish/config.fish in fish"
             exit 1
         }
     else
-        echo "Warning: Zsh not installed, cannot source ~/.zshrc properly"
+        echo "Warning: Zsh not installed, cannot source ~/.config/fish/config.fish properly"
     fi
 else
-    echo "Error: ~/.zshrc not found after copy"
+    echo "Error: ~/.config/fish/config.fish not found after copy"
     exit 1
 fi
 
