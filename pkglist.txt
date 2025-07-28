@@ -13,6 +13,7 @@ ffmpegthumbnailer
 fzf
 gnome-disk-utility
 grim
+gvfs
 hyprland
 hyprpolkitagent
 imagemagick
